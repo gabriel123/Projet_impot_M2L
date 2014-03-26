@@ -18,7 +18,7 @@ public class FenetreNonLucrative extends JFrame {
 	JLabel questionRevenuPatrimoine = new JLabel(
 			"Quels ont été vos revenus patrimoniaux ?");
 	JTextField casePatrimoine = new JTextField(10);
-	JButton valider = new JButton();
+	JButton valider = new JButton("valider");
 
 	public FenetreNonLucrative() {
 		// on défini les parametres de la fenetre ;
@@ -30,9 +30,9 @@ public class FenetreNonLucrative extends JFrame {
 		caseMobilier.setSize(50, 10);
 
 		// on défni les parametres de casePatrimoine
-		casePatrimoine.setSize(100, 20);
-		//
-		valider.setText("Valider");
+		casePatrimoine.setSize(50, 20);
+
+		// on défini ce qu'il se passe quand on clique sur le bouton
 		valider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -45,7 +45,8 @@ public class FenetreNonLucrative extends JFrame {
 							.getText());
 					nonLucrative.setRevenuPatrimoine(patrimoine);
 					System.out.print(" " + nonLucrative.getRevenuPatrimoine());
-					JOptionPane.showMessageDialog(null, nonLucrative.getImpot());
+					JOptionPane.showMessageDialog(null, "Vous devrez "
+							+ nonLucrative.getImpot() + " € d'impôt.");
 
 				} catch (NumberFormatException e1) {
 					JOptionPane.showMessageDialog(null,
@@ -56,13 +57,13 @@ public class FenetreNonLucrative extends JFrame {
 
 		// on rentre les éléments dans la fenetre
 		this.getContentPane().setLayout(new FlowLayout());
-		this.getContentPane().add(questionRevenuMobilier);
-		this.getContentPane().add(caseMobilier);
-		this.getContentPane().setLayout(new FlowLayout());
-		this.getContentPane().add(questionRevenuPatrimoine);
-		this.getContentPane().add(casePatrimoine);
-		this.getContentPane().setLayout(new FlowLayout());
-		this.getContentPane().add(valider);
+		this.add(questionRevenuMobilier);
+		this.add(caseMobilier);
+		this.setLayout(new FlowLayout());
+		this.add(questionRevenuPatrimoine);
+		this.add(casePatrimoine);
+		this.setLayout(new FlowLayout());
+		this.add(valider);
 		this.setLocationRelativeTo(null);
 		this.setVisible(false);
 	}
