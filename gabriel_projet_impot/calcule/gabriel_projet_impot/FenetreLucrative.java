@@ -3,6 +3,7 @@ package gabriel_projet_impot;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class FenetreLucrative extends JFrame {
+
 	AssociationLucrative lucrative = new AssociationLucrative();
 	JLabel questionChiffreAffaire = new JLabel(
 			"Quel a été votre chiffre d'affaire ?");
@@ -18,6 +20,7 @@ public class FenetreLucrative extends JFrame {
 	JTextField chiffreAffaire = new JTextField(10);
 	JTextField benefice = new JTextField(10);
 	JButton valider = new JButton("valider");
+	Date jour = new Date();
 
 	public FenetreLucrative() {
 		this.setTitle("Association lucrative");
@@ -43,10 +46,13 @@ public class FenetreLucrative extends JFrame {
 					System.out.print(" " + lucrative.getBenefices());
 					JOptionPane.showMessageDialog(null, "Vous devrez "
 							+ lucrative.getImpot() + " € d'impôt.");
+					BaseDeDonnees insertion = new BaseDeDonnees(lucrative
+							.getImpot(), jour);
 
 				} catch (NumberFormatException e1) {
 					JOptionPane.showMessageDialog(null,
 							"Entrez un nombre valide");
+
 				}
 			}
 		});
