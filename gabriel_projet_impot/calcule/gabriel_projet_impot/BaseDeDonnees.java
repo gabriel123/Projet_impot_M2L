@@ -1,35 +1,56 @@
 package gabriel_projet_impot;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Statement;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+import javax.swing.JComboBox;
 
 public class BaseDeDonnees {
 
-	
-	
-public BaseDeDonnees(double impot,Date jour) {
-	try
-		{
-  	  	Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/java_impot", user = "root", password = "";
-			java.sql.Connection connexion = null;
-			connexion = DriverManager.getConnection(url, user, password);
-	  		String req = "INSERT INTO tableImpot (ID, jour, estimation) VALUES ('', '"+jour+"','"+impot+"')";
-	  		java.sql.Statement s = connexion.createStatement();
-	  		s.execute(req);
-	  		System.out.print("base de données marche");
-		}
-catch (ClassNotFoundException | SQLException ee)
-	  	{
-	  		System.out.print("probleme base de données");
-	  		ee.printStackTrace();
-	  		
-	  	}
+	public void BaseDeDonnes() {
 
-}
-	
+	}
+
+	public void ajoutBaseDeDonnees(double impot, String jour) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/java_impot", user = "root", password = "";
+			Connection connexion = null;
+			connexion = DriverManager.getConnection(url, user, password);
+			String req = "INSERT INTO tableImpot (jour, estimation) VALUES ('" + jour + "','" + impot + "')";
+			Statement s = connexion.createStatement();
+			s.execute(req);
+			System.out.print("base de données marche");
+		} catch (ClassNotFoundException | SQLException ee) {
+			System.out.print("probleme base de données");
+			ee.printStackTrace();
+
+		}
+	}
+
+	public void afficheBaseDeDonneesCombo(JComboBox combo) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/java_impot", user = "root", password = "";
+			Connection connexion = null;
+			connexion = DriverManager.getConnection(url, user, password);
+			String requete = "SELECT jour AND estimation FROM tableimpot";
+			Statement s = connexion.createStatement();
+			ResultSet resultat = s.executeQuery(requete);
+
+			while (resultat.next()) {
+				combo.addItem(resultat);
+
+			}
+		} catch (ClassNotFoundException | SQLException ee) {
+			System.out.print("probleme base de données avec le combo");
+			ee.printStackTrace();
+
+		}
+
+	}
+
 }

@@ -11,14 +11,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class FenetreNonLucrative extends JFrame {
-	AssociationNonLucrative nonLucrative = new AssociationNonLucrative();
-	JLabel questionRevenuMobilier = new JLabel(
-			"Quels ont été vos revenus mobiliers ?");
-	JTextField caseMobilier = new JTextField(10);
-	JLabel questionRevenuPatrimoine = new JLabel(
-			"Quels ont été vos revenus patrimoniaux ?");
-	JTextField casePatrimoine = new JTextField(10);
-	JButton valider = new JButton("valider");
+
+	private DateConvertion jour = new DateConvertion();
+	private AssociationNonLucrative nonLucrative = new AssociationNonLucrative();
+	private JLabel questionRevenuMobilier = new JLabel("Quels ont été vos revenus mobiliers ?");
+	private JTextField caseMobilier = new JTextField(10);
+	private JLabel questionRevenuPatrimoine = new JLabel("Quels ont été vos revenus patrimoniaux ?");
+	private JTextField casePatrimoine = new JTextField(10);
+	private JButton valider = new JButton("valider");
+	private BaseDeDonnees insertion = new BaseDeDonnees();
 
 	public FenetreNonLucrative() {
 		// on défini les parametres de la fenetre ;
@@ -41,16 +42,14 @@ public class FenetreNonLucrative extends JFrame {
 					nonLucrative.setRevenuMobiliers(mobilier);
 					System.out.print(nonLucrative.getRevenuMobiliers());
 					// converti en double un string
-					double patrimoine = Double.parseDouble(caseMobilier
-							.getText());
+					double patrimoine = Double.parseDouble(caseMobilier.getText());
 					nonLucrative.setRevenuPatrimoine(patrimoine);
 					System.out.print(" " + nonLucrative.getRevenuPatrimoine());
-					JOptionPane.showMessageDialog(null, "Vous devrez "
-							+ nonLucrative.getImpot() + " € d'impôt.");
+					JOptionPane.showMessageDialog(null, "Vous devrez " + nonLucrative.getImpot() + " € d'impôt.");
+					insertion.ajoutBaseDeDonnees(nonLucrative.getImpot(), jour.getDateConvertion());
 
 				} catch (NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null,
-							"Entrez un nombre valide");
+					JOptionPane.showMessageDialog(null, "Entrez un nombre valide");
 				}
 			}
 		});

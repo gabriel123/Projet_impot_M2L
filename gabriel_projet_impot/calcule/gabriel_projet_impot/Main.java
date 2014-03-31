@@ -6,7 +6,8 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		FenetreChoix f = new FenetreChoix();
-
+		DateConvertion jour = new DateConvertion();
+		System.out.print(jour.getDateConvertion());
 	}
 
 }

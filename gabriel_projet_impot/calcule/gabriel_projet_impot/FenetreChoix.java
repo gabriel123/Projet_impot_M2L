@@ -5,19 +5,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class FenetreChoix extends JFrame {
 
+	BaseDeDonnees base = new BaseDeDonnees();
 	Regime choix = new Regime();
 	JButton boutonOui = new JButton("oui");
 	JButton boutonNon = new JButton("non");
-	JLabel question = new JLabel(
-			"Avez-vous géré l'association de maniere désintéressée ?");
+	JLabel question = new JLabel("Avez-vous géré l'association de maniere désintéressée ?");
 	JFrame j = new JFrame();
 	FenetreNonLucrative fnonLucrative = new FenetreNonLucrative();
 	FenetreLucrative fLucrative = new FenetreLucrative();
+	private JComboBox combo = new JComboBox();
 
 	public FenetreChoix() {
 
@@ -40,7 +42,6 @@ public class FenetreChoix extends JFrame {
 		});
 
 		// on défini les fonctions du boutonNon
-
 		boutonNon.setText("Non");
 		boutonNon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -52,13 +53,17 @@ public class FenetreChoix extends JFrame {
 			}
 		});
 
+		// on défini le combo
+		base.afficheBaseDeDonneesCombo(combo);
+
 		// on ajoute les éléments au panel (la fenetre)
 		j.add(question);
 		j.setLayout(new FlowLayout());
 		j.add(boutonOui);
 		j.add(boutonNon);
+		j.add(combo);
 		j.setVisible(true);
-
+		j.add(combo);
 	}
 
 }

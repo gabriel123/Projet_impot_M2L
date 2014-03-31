@@ -3,7 +3,6 @@ package gabriel_projet_impot;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,14 +12,14 @@ import javax.swing.JTextField;
 
 public class FenetreLucrative extends JFrame {
 
-	AssociationLucrative lucrative = new AssociationLucrative();
-	JLabel questionChiffreAffaire = new JLabel(
-			"Quel a été votre chiffre d'affaire ?");
-	JLabel questionBenefice = new JLabel("Quel a été votre bénéfice ?");
-	JTextField chiffreAffaire = new JTextField(10);
-	JTextField benefice = new JTextField(10);
-	JButton valider = new JButton("valider");
-	Date jour = new Date();
+	private DateConvertion jour = new DateConvertion();
+	private AssociationLucrative lucrative = new AssociationLucrative();
+	private JLabel questionChiffreAffaire = new JLabel("Quel a été votre chiffre d'affaire ?");
+	private JLabel questionBenefice = new JLabel("Quel a été votre bénéfice ?");
+	private JTextField chiffreAffaire = new JTextField(10);
+	private JTextField benefice = new JTextField(10);
+	private JButton valider = new JButton("valider");
+	private BaseDeDonnees insertion = new BaseDeDonnees();
 
 	public FenetreLucrative() {
 		this.setTitle("Association lucrative");
@@ -36,25 +35,23 @@ public class FenetreLucrative extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					// converti en double un string
-					double chiffreA = Double.parseDouble(chiffreAffaire
-							.getText());
+					double chiffreA = Double.parseDouble(chiffreAffaire.getText());
 					lucrative.setChiffreAffaires(chiffreA);
 					System.out.print(lucrative.getChiffreAffaires());
 					// converti en double un string
 					double benf = Double.parseDouble(benefice.getText());
 					lucrative.setBenefices(benf);
 					System.out.print(" " + lucrative.getBenefices());
-					JOptionPane.showMessageDialog(null, "Vous devrez "
-							+ lucrative.getImpot() + " € d'impôt.");
-					BaseDeDonnees insertion = new BaseDeDonnees(lucrative
-							.getImpot(), jour);
+					JOptionPane.showMessageDialog(null, "Vous devrez " + lucrative.getImpot() + " € d'impôt.");
+					insertion.ajoutBaseDeDonnees(lucrative.getImpot(), jour.getDateConvertion());
 
 				} catch (NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null,
-							"Entrez un nombre valide");
+					JOptionPane.showMessageDialog(null, "Entrez un nombre valide");
 
 				}
+
 			}
+
 		});
 
 		this.getContentPane().setLayout(new FlowLayout());
