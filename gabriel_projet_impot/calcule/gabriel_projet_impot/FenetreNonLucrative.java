@@ -47,6 +47,7 @@ public class FenetreNonLucrative extends JFrame {
 					System.out.print(" " + nonLucrative.getRevenuPatrimoine());
 					JOptionPane.showMessageDialog(null, "Vous devrez " + nonLucrative.getImpot() + " € d'impôt.");
 					insertion.ajoutBaseDeDonnees(nonLucrative.getImpot(), jour.getDateConvertion());
+					dispose();
 
 				} catch (NumberFormatException e1) {
 					JOptionPane.showMessageDialog(null, "Entrez un nombre valide");
@@ -55,7 +56,7 @@ public class FenetreNonLucrative extends JFrame {
 		});
 
 		// on rentre les éléments dans la fenetre
-		this.getContentPane().setLayout(new FlowLayout());
+		this.setLayout(new FlowLayout());
 		this.add(questionRevenuMobilier);
 		this.add(caseMobilier);
 		this.setLayout(new FlowLayout());
@@ -64,7 +65,7 @@ public class FenetreNonLucrative extends JFrame {
 		this.setLayout(new FlowLayout());
 		this.add(valider);
 		this.setLocationRelativeTo(null);
-		this.setVisible(false);
+
 	}
 
 }

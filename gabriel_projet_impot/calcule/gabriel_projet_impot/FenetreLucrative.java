@@ -44,6 +44,7 @@ public class FenetreLucrative extends JFrame {
 					System.out.print(" " + lucrative.getBenefices());
 					JOptionPane.showMessageDialog(null, "Vous devrez " + lucrative.getImpot() + " € d'impôt.");
 					insertion.ajoutBaseDeDonnees(lucrative.getImpot(), jour.getDateConvertion());
+					dispose();
 
 				} catch (NumberFormatException e1) {
 					JOptionPane.showMessageDialog(null, "Entrez un nombre valide");
@@ -54,7 +55,7 @@ public class FenetreLucrative extends JFrame {
 
 		});
 
-		this.getContentPane().setLayout(new FlowLayout());
+		this.setLayout(new FlowLayout());
 		this.add(questionChiffreAffaire);
 		this.add(chiffreAffaire);
 		this.add(questionBenefice);

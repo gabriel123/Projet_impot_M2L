@@ -11,15 +11,16 @@ import javax.swing.JLabel;
 
 public class FenetreChoix extends JFrame {
 
-	BaseDeDonnees base = new BaseDeDonnees();
-	Regime choix = new Regime();
-	JButton boutonOui = new JButton("oui");
-	JButton boutonNon = new JButton("non");
-	JLabel question = new JLabel("Avez-vous géré l'association de maniere désintéressée ?");
-	JFrame j = new JFrame();
-	FenetreNonLucrative fnonLucrative = new FenetreNonLucrative();
-	FenetreLucrative fLucrative = new FenetreLucrative();
+	private BaseDeDonnees base = new BaseDeDonnees();
+	private Regime choix = new Regime();
+	private JButton boutonOui = new JButton("oui");
+	private JButton boutonNon = new JButton("non");
+	private JLabel question = new JLabel("Avez-vous géré l'association de maniere désintéressée ?");
+	private JFrame j = new JFrame();
+	private FenetreNonLucrative fnonLucrative = new FenetreNonLucrative();
+	private FenetreLucrative fLucrative = new FenetreLucrative();
 	private JComboBox combo = new JComboBox();
+	private JButton supprimer = new JButton("supprimer");
 
 	public FenetreChoix() {
 
@@ -33,28 +34,30 @@ public class FenetreChoix extends JFrame {
 		boutonOui.setBounds(30, 50, 30, 30);
 		boutonOui.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("bravo");
 				choix.setChoix(true);
 				fnonLucrative.setVisible(true);
 				j.setVisible(false);
-
 			}
 		});
 
 		// on défini les fonctions du boutonNon
-		boutonNon.setText("Non");
 		boutonNon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("ouai");
 				choix.setChoix(false);
 				fLucrative.setVisible(true);
 				j.setVisible(false);
-
 			}
 		});
 
 		// on défini le combo
 		base.afficheBaseDeDonneesCombo(combo);
+
+		// ondéfini le bouton supprimer
+		supprimer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				base.supprimeElement(combo);
+			}
+		});
 
 		// on ajoute les éléments au panel (la fenetre)
 		j.add(question);
@@ -62,8 +65,9 @@ public class FenetreChoix extends JFrame {
 		j.add(boutonOui);
 		j.add(boutonNon);
 		j.add(combo);
+		j.add(supprimer);
 		j.setVisible(true);
-		j.add(combo);
+
 	}
 
 }

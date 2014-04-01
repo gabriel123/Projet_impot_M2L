@@ -9,7 +9,7 @@ public class DateConvertion {
 
 	public DateConvertion() {
 		Date maintenant = new Date();
-		SimpleDateFormat formatDateJour = new SimpleDateFormat("dd/MM/yyyy kk:mm:ss");
+		SimpleDateFormat formatDateJour = new SimpleDateFormat("dd/MM/yyyy kk:mm");
 		dateFormatee = formatDateJour.format(maintenant);
 	}
 

@@ -24,7 +24,9 @@ public class BaseDeDonnees {
 			Statement s = connexion.createStatement();
 			s.execute(req);
 			System.out.print("base de données marche");
-		} catch (ClassNotFoundException | SQLException ee) {
+		}
+
+		catch (ClassNotFoundException | SQLException ee) {
 			System.out.print("probleme base de données");
 			ee.printStackTrace();
 
@@ -37,18 +39,32 @@ public class BaseDeDonnees {
 			String url = "jdbc:mysql://localhost:3306/java_impot", user = "root", password = "";
 			Connection connexion = null;
 			connexion = DriverManager.getConnection(url, user, password);
-			String requete = "SELECT jour AND estimation FROM tableimpot";
+			String requete = "SELECT jour, estimation FROM tableimpot";
 			Statement s = connexion.createStatement();
 			ResultSet resultat = s.executeQuery(requete);
 
 			while (resultat.next()) {
-				combo.addItem(resultat);
-
+				combo.addItem(resultat.getObject(1) + " estimation de : " + resultat.getObject(2) + "€");
 			}
 		} catch (ClassNotFoundException | SQLException ee) {
 			System.out.print("probleme base de données avec le combo");
 			ee.printStackTrace();
+		}
+	}
 
+	public void supprimeElement(JComboBox combo) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/java_impot", user = "root", password = "";
+			Connection connexion = null;
+			connexion = DriverManager.getConnection(url, user, password);
+			String req = "DELETE FROM tableimpot WHERE jour AND estimation = '" + combo.getSelectedItem() + "' ";
+			Statement s = connexion.createStatement();
+			s.execute(req);
+			System.out.print("base de données marche");
+		} catch (ClassNotFoundException | SQLException ee) {
+			System.out.print("probleme base de données");
+			ee.printStackTrace();
 		}
 
 	}
