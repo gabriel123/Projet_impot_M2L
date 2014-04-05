@@ -58,12 +58,13 @@ public class BaseDeDonnees {
 			String url = "jdbc:mysql://localhost:3306/java_impot", user = "root", password = "";
 			Connection connexion = null;
 			connexion = DriverManager.getConnection(url, user, password);
-			String req = "DELETE FROM tableimpot WHERE jour AND estimation = '" + combo.getSelectedItem() + "' ";
+			String req = "DELETE FROM tableimpot WHERE jour ='" + combo.getSelectedItem().toString().substring(0, 19) + "'";
 			Statement s = connexion.createStatement();
+			System.out.print(combo.getSelectedItem().toString().substring(0, 19) + " ");
 			s.execute(req);
-			System.out.print("base de données marche");
+
 		} catch (ClassNotFoundException | SQLException ee) {
-			System.out.print("probleme base de données");
+			System.out.print("probleme base de données ");
 			ee.printStackTrace();
 		}
 
