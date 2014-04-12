@@ -64,7 +64,7 @@ public class BaseDeDonnees {
 			s.execute(req);
 
 		} catch (ClassNotFoundException | SQLException ee) {
-			System.out.print("probleme base de données ");
+			System.out.print("probleme dans la base de données");
 			ee.printStackTrace();
 		}
 

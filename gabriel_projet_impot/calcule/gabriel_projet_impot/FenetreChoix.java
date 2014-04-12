@@ -62,9 +62,13 @@ public class FenetreChoix extends JFrame {
 		// ondéfini le bouton supprimer
 		supprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				base.supprimeElement(combo);
 				j.dispose();
-				JOptionPane.showMessageDialog(null, "supprimé");
+				try {
+					base.supprimeElement(combo);
+					JOptionPane.showMessageDialog(null, "Cette estimation a bien été supprimée !");
+				} catch (NullPointerException e1) {
+					JOptionPane.showMessageDialog(null, "Il n'y a aucune estimation à supprimer.");
+				}
 				j.setVisible(true);
 
 			}

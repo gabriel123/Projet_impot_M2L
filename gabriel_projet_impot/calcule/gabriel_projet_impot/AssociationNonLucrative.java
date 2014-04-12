@@ -29,8 +29,13 @@ public class AssociationNonLucrative {
 		return revenuMobiliers * 0.1 + revenuPatrimoine * 0.24;
 	}
 
+	private static double arrondiNDecimales(double x, int n) {
+		double pow = Math.pow(10, n);
+		return (Math.floor(x * pow)) / pow;
+	}
+
 	public double getImpot() {
-		return calculImpoAsso();
+		return arrondiNDecimales(calculImpoAsso(), 2);
 	}
 
 }
