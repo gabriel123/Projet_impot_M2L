@@ -1,6 +1,5 @@
 package gabriel_projet_impot;
 
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class FenetreChoix extends JFrame {
 
@@ -21,17 +22,23 @@ public class FenetreChoix extends JFrame {
 	private FenetreLucrative fLucrative = new FenetreLucrative();
 	private JComboBox combo = new JComboBox();
 	private JButton supprimer = new JButton("supprimer");
+	private JPanel panel = new JPanel();
 
 	public FenetreChoix() {
-
-		// on défini les fonctions de la fenetre nommée f
-		j.setTitle("Faites un choix !");
-		j.setSize(400, 400);
-		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		j.setLayout(null);
+		// on ajoute les éléments au panel
+		panel.add(question);
+		panel.add(boutonOui);
+		panel.add(boutonNon);
+		panel.add(combo);
+		panel.add(supprimer);
+		panel.setLayout(null);
+		question.setBounds(30, 10, 350, 30);
+		boutonOui.setBounds(210, 60, 80, 30);
+		boutonNon.setBounds(90, 60, 80, 30);
+		combo.setBounds(15, 150, 350, 30);
+		supprimer.setBounds(140, 250, 100, 20);
 
 		// on défini les fonctions du boutonOui
-		boutonOui.setBounds(30, 50, 30, 30);
 		boutonOui.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				choix.setChoix(true);
@@ -56,18 +63,19 @@ public class FenetreChoix extends JFrame {
 		supprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				base.supprimeElement(combo);
+				j.dispose();
+				JOptionPane.showMessageDialog(null, "supprimé");
+				j.setVisible(true);
+
 			}
 		});
 
-		// on ajoute les éléments au panel (la fenetre)
-		j.add(question);
-		j.setLayout(new FlowLayout());
-		j.add(boutonOui);
-		j.add(boutonNon);
-		j.add(combo);
-		j.add(supprimer);
+		// on défini les fonctions de la fenetre nommée f
+		j.setTitle("Faites un choix !");
+		j.setSize(400, 400);
+		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		j.setContentPane(panel);
 		j.setVisible(true);
 
 	}
-
 }

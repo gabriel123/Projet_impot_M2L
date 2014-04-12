@@ -1,6 +1,5 @@
 package gabriel_projet_impot;
 
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class FenetreLucrative extends JFrame {
@@ -20,15 +20,21 @@ public class FenetreLucrative extends JFrame {
 	private JTextField benefice = new JTextField(10);
 	private JButton valider = new JButton("valider");
 	private BaseDeDonnees insertion = new BaseDeDonnees();
+	private JPanel panel = new JPanel();
 
 	public FenetreLucrative() {
-		this.setTitle("Association lucrative");
-		this.setSize(400, 400);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		// on défini les cases
-		chiffreAffaire.setSize(5, 10);
-		benefice.setSize(5, 10);
+		panel.add(questionChiffreAffaire);
+		panel.add(chiffreAffaire);
+		panel.add(questionBenefice);
+		panel.add(benefice);
+		panel.add(valider);
+		panel.setLayout(null);
+		questionChiffreAffaire.setBounds(30, 80, 220, 50);
+		chiffreAffaire.setBounds(230, 95, 80, 25);
+		questionBenefice.setBounds(30, 120, 280, 50);
+		benefice.setBounds(230, 133, 80, 25);
+		valider.setBounds(140, 180, 100, 30);
 
 		// on défini ce qu'il se passe quand on clique sur le bouton
 		valider.addActionListener(new ActionListener() {
@@ -55,14 +61,11 @@ public class FenetreLucrative extends JFrame {
 
 		});
 
-		this.setLayout(new FlowLayout());
-		this.add(questionChiffreAffaire);
-		this.add(chiffreAffaire);
-		this.add(questionBenefice);
-		this.add(benefice);
-		this.setLayout(new FlowLayout());
-		this.add(valider);
+		// on défini la fenetre
+		this.setTitle("Association lucrative");
+		this.setSize(400, 400);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setContentPane(panel);
 
 	}
-
 }
