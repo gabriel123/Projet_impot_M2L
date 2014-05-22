@@ -64,7 +64,11 @@ public class FenetreChoix extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				j.dispose();
 				try {
+
 					base.supprimeElement(combo);
+					int i = combo.getSelectedIndex();
+					combo.removeItemAt(i);
+					;
 					JOptionPane.showMessageDialog(null, "Cette estimation a bien été supprimée !");
 
 				} catch (NullPointerException e1) {
