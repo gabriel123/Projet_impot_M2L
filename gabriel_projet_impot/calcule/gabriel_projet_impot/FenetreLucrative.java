@@ -14,8 +14,8 @@ public class FenetreLucrative extends JFrame {
 
 	private DateConvertion jour = new DateConvertion();
 	private AssociationLucrative lucrative = new AssociationLucrative();
-	private JLabel questionChiffreAffaire = new JLabel("Quel a été votre chiffre d'affaire ?");
-	private JLabel questionBenefice = new JLabel("Quel a été votre bénéfice ?");
+	private JLabel questionChiffreAffaire = new JLabel("Quel a été votre chiffre d'affaire en euros ?");
+	private JLabel questionBenefice = new JLabel("Quel a été votre bénéfice en euros ?");
 	private JTextField chiffreAffaire = new JTextField(10);
 	private JTextField benefice = new JTextField(10);
 	private JButton valider = new JButton("valider");
@@ -30,21 +30,21 @@ public class FenetreLucrative extends JFrame {
 		panel.add(benefice);
 		panel.add(valider);
 		panel.setLayout(null);
-		questionChiffreAffaire.setBounds(30, 80, 220, 50);
-		chiffreAffaire.setBounds(230, 95, 80, 25);
-		questionBenefice.setBounds(30, 120, 280, 50);
-		benefice.setBounds(230, 133, 80, 25);
+		questionChiffreAffaire.setBounds(25, 80, 250, 50);
+		chiffreAffaire.setBounds(275, 95, 80, 25);
+		questionBenefice.setBounds(25, 120, 280, 50);
+		benefice.setBounds(275, 133, 80, 25);
 		valider.setBounds(140, 180, 100, 30);
 
 		// on défini ce qu'il se passe quand on clique sur le bouton
 		valider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					// converti en double un string
+					// convertit en double un string
 					double chiffreA = Double.parseDouble(chiffreAffaire.getText());
 					lucrative.setChiffreAffaires(chiffreA);
 					System.out.print(lucrative.getChiffreAffaires());
-					// converti en double un string
+					// convertit en double un string
 					double benf = Double.parseDouble(benefice.getText());
 					lucrative.setBenefices(benf);
 					System.out.print(" " + lucrative.getBenefices());
@@ -61,7 +61,7 @@ public class FenetreLucrative extends JFrame {
 
 		});
 
-		// on défini la fenetre
+		// on définit la fenetre
 		this.setTitle("Association lucrative");
 		this.setSize(400, 400);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -17,6 +17,7 @@ public class FenetreChoix extends JFrame {
 	private JButton boutonOui = new JButton("oui");
 	private JButton boutonNon = new JButton("non");
 	private JLabel question = new JLabel("Avez-vous géré l'association de maniere désintéressée ?");
+	private JLabel estimation = new JLabel("Estimations calculées précedemment :");
 	private JFrame j = new JFrame();
 	private FenetreNonLucrative fnonLucrative = new FenetreNonLucrative();
 	private FenetreLucrative fLucrative = new FenetreLucrative();
@@ -29,14 +30,16 @@ public class FenetreChoix extends JFrame {
 		panel.add(question);
 		panel.add(boutonOui);
 		panel.add(boutonNon);
+		panel.add(estimation);
 		panel.add(combo);
 		panel.add(supprimer);
 		panel.setLayout(null);
 		question.setBounds(30, 10, 350, 30);
 		boutonOui.setBounds(210, 60, 80, 30);
 		boutonNon.setBounds(90, 60, 80, 30);
-		combo.setBounds(15, 150, 350, 30);
-		supprimer.setBounds(140, 250, 100, 20);
+		estimation.setBounds(15, 175, 350, 30);
+		combo.setBounds(15, 200, 350, 30);
+		supprimer.setBounds(240, 250, 100, 25);
 
 		// on défini les fonctions du boutonOui
 		boutonOui.addActionListener(new ActionListener() {
